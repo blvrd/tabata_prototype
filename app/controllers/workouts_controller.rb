@@ -8,7 +8,10 @@ class WorkoutsController < ApplicationController
   end
   
   def create
-
+    @workout = Workout.create
+    @workout.exercise = params[:exercise]
+    @workout.save
+    redirect_to workout_url
   end
   
   def show
