@@ -1,0 +1,13 @@
+<%= link_to "New Workout", new_workout_url %>
+<div class="container">
+<div class="row">
+  <% @workouts.each do |workout| %>
+  <div class="jumbotron">
+    <p><%= workout.exercise %>: <%= workout.total_reps %></p>
+    <p>Date: <%= workout.created_at.strftime("%d %b. %Y") %></p>
+  </div>
+  <% end %>
+</div>
+  
+</div>
+
