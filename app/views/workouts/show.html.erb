@@ -79,9 +79,9 @@
       this.resolution = config.resolution || 10;
       config.specs = config.specs || {};
       this.specs = {
-         rounds: 8,
-         rest: 10,
-         work: 20
+         rounds: config.spec || 8,
+         rest: config.specs || 10,
+         work: config.specs || 20
       };
       
       var current = {};
