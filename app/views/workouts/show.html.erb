@@ -1,8 +1,6 @@
-<html>
-
-
-   <body>
-      <div class="timer-wrapper">
+<div class="container">
+<div class="jumbotron">
+        <div class="timer-wrapper">
          <div class="timer-notification-area">
             <div class="timer-display">00:00.00</div>
             <div class="timer-float-placeholder">
@@ -21,15 +19,15 @@
             </div>
          </div>
          <div class="timer-controls">
-            <div class="timer-control-set">
+            <div class="timer-control-set hidden">
                <span class="timer-control-label">Rounds: </span>
                <input class="timer-control-input input-rounds" value="8"></input>
             </div>
-            <div class="timer-control-set">
+            <div class="timer-control-set hidden">
                <span class="timer-control-label">Rest: </span>
                <input class="timer-control-input input-rest" value="10"></input>
             </div>
-            <div class="timer-control-set">
+            <div class="timer-control-set hidden">
                <span class="timer-control-label">Work: </span>
                <input class="timer-control-input input-work" value="20"></input>
             </div>
@@ -37,35 +35,10 @@
                <input type="button" class="timer-action timer-start" value="Start"/>
             </div>
          </div>
-         <div class="timer-footer">
-            Tabata Timer
-            <div class="timer-explanation">
-               <div class="timer-explanation-entry"><span style="font-weight:bold">Keyboard:</span></div>
-               <div class="timer-explanation-entry">
-                  <span style="font-weight:bold">
-                     <span class="keyboard-button">Space</span>
-                     /
-                     <span class="keyboard-button">Return</span>/
-                     <span class="keyboard-button">s</span>
-                  </span> - Start/Stop timer</div>
-               <div class="timer-explanation-entry">
-                  <span style="font-weight:bold">
-                     <span class="keyboard-button">r</span>
-                  </span> - Start timer
-               </div>
-               <div class="timer-explanation-entry">
-                  <span style="font-weight:bold">
-                     <span class="keyboard-button">p</span>
-                  </span> - Stop timer
-               </div>
-            </div>
-         </div>
-      </div>
-      <div class="overlay-container" style="display: none;">      
-         <div class="timer-info global-notification">
-            Work!
-         </div>
-      </div>
+
+</div>
+</div>         
+
       <script type="text/javascript">
 	(function($){
    var schedule = function(callback, table, scope, error){
@@ -106,9 +79,9 @@
       this.resolution = config.resolution || 10;
       config.specs = config.specs || {};
       this.specs = {
-         rounds: config.specs.rounds || 8,
-         rest: config.specs.rest || 10,
-         work: config.specs.work || 20
+         rounds: 8,
+         rest: 10,
+         work: 20
       };
       
       var current = {};
@@ -325,8 +298,7 @@
 })(jQuery);
 
 </script>
-   </body>
-</html>
+
 
 
 
