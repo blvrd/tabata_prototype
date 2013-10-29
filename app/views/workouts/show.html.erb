@@ -1,4 +1,14 @@
 <div class="container">
+<div class="header">
+  <ul class="nav nav-pills pull-right">
+    <li class="active"><a href="#">New Workout</a></li>
+    <li><%= link_to "Progress", workouts_url %></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Logout</a></li>
+  </ul>
+  <h3 class="text-muted">Tabata</h3>
+</div>
+<br />
 <div class="jumbotron">
   <div class="timer-wrapper">
     <div class="timer-notification-area">
@@ -36,7 +46,7 @@
     </div>
   </div>
 </div>
-      <script type="text/javascript">
+<script type="text/javascript">
 	(function($){
    var schedule = function(callback, table, scope, error){
       var i = 0;
