@@ -75,19 +75,19 @@
         </div>
         <br>
 	<div id="buttons">
-	  <button type="button" class="btn btn-lg disabled">1</button>
-          <button type="button" class="btn btn-lg disabled">2</button>
-          <button type="button" class="btn btn-lg disabled">3</button>
-          <button type="button" class="btn btn-lg disabled">4</button>
-          <button type="button" class="btn btn-lg disabled">5</button>
-          <button type="button" class="btn btn-lg disabled">6</button>
-          <button type="button" class="btn btn-lg disabled">7</button>
-          <button type="button" class="btn btn-lg disabled">8</button>
+	  <button type="button" class="btn btn-lg disabled" id="1">1</button>
+          <button type="button" class="btn btn-lg disabled" id="2">2</button>
+          <button type="button" class="btn btn-lg disabled" id="3">3</button>
+          <button type="button" class="btn btn-lg disabled" id="4">4</button>
+          <button type="button" class="btn btn-lg disabled" id="5">5</button>
+          <button type="button" class="btn btn-lg disabled" id="6">6</button>
+          <button type="button" class="btn btn-lg disabled" id="7">7</button>
+          <button type="button" class="btn btn-lg disabled" id="8">8</button>
 
 	</div>
 </div>
 <script type="text/javascript">
-	(function($){
+(function($){
    var schedule = function(callback, table, scope, error){
       var i = 0;
       var tick = function(){
@@ -126,9 +126,9 @@
       this.resolution = config.resolution || 10;
       config.specs = config.specs || {};
       this.specs = {
-         rounds: config.spec || 8,
-         rest: config.specs || 10,
-         work: config.specs || 20
+         rounds: config.specs.rounds || 8,
+         rest: config.specs.rest || 10,
+         work: config.specs.work || 20
       };
       
       var current = {};
@@ -345,7 +345,9 @@
 })(jQuery);
 
 </script>
-
+<script type="text/javascript">
+  // jquery code
+</script>
 
 
 
