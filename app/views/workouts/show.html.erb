@@ -48,6 +48,7 @@
         <div class="timer-float-info">
           <div class="timer-info timer-display-like">
             <div class="info-text-smaller round-type">Work</div>
+            <%= @workout.exercise %>
           </div>
         </div>
       </div>
@@ -75,16 +76,15 @@
         </div>
         <br>
 	<div id="buttons">
-	  <button type="button" class="btn btn-lg disabled" id="1">1</button>
-          <button type="button" class="btn btn-lg disabled" id="2">2</button>
-          <button type="button" class="btn btn-lg disabled" id="3">3</button>
-          <button type="button" class="btn btn-lg disabled" id="4">4</button>
-          <button type="button" class="btn btn-lg disabled" id="5">5</button>
-          <button type="button" class="btn btn-lg disabled" id="6">6</button>
-          <button type="button" class="btn btn-lg disabled" id="7">7</button>
-          <button type="button" class="btn btn-lg disabled" id="8">8</button>
-
-	</div>
+  	<button type="button" class="btn btn-lg disabled" id="1">1</button>
+    <button type="button" class="btn btn-lg disabled" id="2">2</button>
+    <button type="button" class="btn btn-lg disabled" id="3">3</button>
+    <button type="button" class="btn btn-lg disabled" id="4">4</button>
+    <button type="button" class="btn btn-lg disabled" id="5">5</button>
+    <button type="button" class="btn btn-lg disabled" id="6">6</button>
+    <button type="button" class="btn btn-lg disabled" id="7">7</button>
+    <button type="button" class="btn btn-lg disabled" id="8">8</button>
+  </div>
 </div>
 <script type="text/javascript">
 (function($){
@@ -344,9 +344,6 @@
    
 })(jQuery);
 
-</script>
-<script type="text/javascript">
-  // jquery code
 </script>
 
 
