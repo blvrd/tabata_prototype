@@ -96,6 +96,7 @@
                callback.call(scope || window, table[i], i);
                setTimeout(tick, table[i]);
                i++;
+               
             }catch(e){
                error = error || function(){};
                if(error){
@@ -212,7 +213,10 @@
                   type: 'work'
                });
                schedules.push(s.work*1000);
+
+
             }
+
             schedules.push(500);
             this.rounds = rs;
             console.log('start');
@@ -297,6 +301,8 @@
       };
       
       this.notifyForRound = function(rn, type){
+         $('#' + rn).css("background-color", "red");
+         $('#' + rn).css("color", "white");
          $('.round-number').html(rn);
          $('.round-type').html(type=='rest' ? 'REST':'WORK');
       };
@@ -342,7 +348,12 @@
       tm = new TBTimer({});
    });
    
+   $(".timer-action").click(function() { 
+    $("button").css("background-color", "#C4C4C4");
+    $("button").css("color", "black");
+   });
 })(jQuery);
+
 
 </script>
 
