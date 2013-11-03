@@ -305,6 +305,12 @@
          $('#' + rn).css("color", "white");
          $('.round-number').html(rn);
          $('.round-type').html(type=='rest' ? 'REST':'WORK');
+         if($('.round-type').contains("REST") {
+	   $('.jumbotron').css("background-color", "green")
+         }
+	 else {			   
+           $('.jumbotron').css("background-color", "red")
+         };
       };
       var self = this;
       $('.timer-start').click(function(){
