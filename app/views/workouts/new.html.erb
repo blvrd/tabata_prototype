@@ -50,7 +50,6 @@
               <div class="info-text-smaller round-type">Work</div>
 	      <% exercise_array = %w( pushups squats burpees jumprope dips pullups ) %>
 	      <% exercise = exercise_array.sample.capitalize %>
-	      <%= hidden_field_tag :exercise, "#{exercise}" %>
               <%= exercise %>
             </div>
           </div>
@@ -89,6 +88,7 @@
       <button type="button" class="btn btn-lg disabled" id="8">8</button>
     </div>
     <%= form_tag workouts_path do %>
+      <%= hidden_field_tag :exercise, exercise %>
       <%= label_tag :total_reps, "Total reps:" %>
       <%= number_field_tag :total_reps %>
       <%= submit_tag %>
