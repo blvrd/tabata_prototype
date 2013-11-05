@@ -1,6 +1,366 @@
-<%= form_tag(new_workout_path) do %>
-  <%= label "Exercise", :exercise %>
-  <%= text_field "Exercise", :exercise %>
+<style type="text/css" media="all">
+ .timer-controls {
+   padding-left: 45%;
+ }
+ .timer-float-placeholder {
+   padding-left: 45%;
+ }
+ #buttons {
+   padding-left: 24.5%;
+ }
+
+ .container {
+   max-width: 970px !important;
+ }
+
+ .timer-display {
+   padding-left: 28%;
+   font-size: 90px;
+ }
+</style>
+
+<div class="container">
+  <div class="header">
+    <ul class="nav nav-pills pull-right">
+      <li class="active"><a href="#">New Workout</a></li>
+      <li><%= link_to "Progress", workouts_url %></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Logout</a></li>
+    </ul>
+    <h3 class="text-muted">Tabata</h3>
+  </div>
+
+
   <br />
-  <%= submit_tag("Create workout", class: "btn btn-large btn-primary") %>
-<% end %>
+
+
+  <div class="jumbotron">
+    <div class="timer-wrapper">
+      <div class="timer-notification-area">
+	<div class="timer-display">00:00.00</div>
+	<div class="timer-float-placeholder">
+          <div class="timer-float-info">
+            <div class="timer-info">
+              <div class="info-text-title">Round</div>
+              <div class="info-text round-number">-</div>
+            </div>
+          </div>
+          <div class="timer-float-info">
+            <div class="timer-info timer-display-like">
+              <div class="info-text-smaller round-type">Work</div>
+	      <% exercise_array = %w( pushups squats burpees jumprope dips pullups ) %>
+	      <% exercise = exercise_array.sample.capitalize %>
+	      <%= hidden_field_tag 'exercsise', "#{exercise}" %>
+              <%=  exercise %>
+            </div>
+          </div>
+	</div>
+      </div>
+      <div class="timer-controls">
+	<div class="timer-control-set hidden">
+          <span class="timer-control-label">Rounds: </span>
+          <input class="timer-control-input input-rounds" value="8"></input>
+	</div>
+	<div class="timer-control-set hidden">
+          <span class="timer-control-label">Rest: </span>
+          <input class="timer-control-input input-rest" value="10"></input>
+	</div>
+	<div class="timer-control-set hidden">
+          <span class="timer-control-label">Work: </span>
+          <input class="timer-control-input input-work" value="20"></input>
+	</div>
+	<div class="timer-control-set">
+          <input type="button" class="timer-action timer-start btn btn-primary active" value="Start"/>
+	</div>
+      </div>
+    </div>
+    <div class="">
+      <i class="icon-microphone"></i>
+    </div>
+    <br>
+    <div id="buttons">
+      <button type="button" class="btn btn-lg disabled" id="1">1</button>
+      <button type="button" class="btn btn-lg disabled" id="2">2</button>
+      <button type="button" class="btn btn-lg disabled" id="3">3</button>
+      <button type="button" class="btn btn-lg disabled" id="4">4</button>
+      <button type="button" class="btn btn-lg disabled" id="5">5</button>
+      <button type="button" class="btn btn-lg disabled" id="6">6</button>
+      <button type="button" class="btn btn-lg disabled" id="7">7</button>
+      <button type="button" class="btn btn-lg disabled" id="8">8</button>
+    </div>
+    <%= form_tag do %>
+      <%= label_tag  %>
+    <% end %>
+  </div>
+  <script type="text/javascript">
+   (function($){
+     var schedule = function(callback, table, scope, error){
+       var i = 0;
+       var tick = function(){
+         if(i < table.length){
+           try{
+             callback.call(scope || window, table[i], i);
+             setTimeout(tick, table[i]);
+             i++;
+
+           }catch(e){
+             error = error || function(){};
+             if(error){
+               error(e, table[i], i);
+             }
+           }
+         }
+       };
+       //if(table && table.length){
+       //   setTimeout(tick, table[i]);
+       //}
+       tick();
+     };
+
+     var convertMillis = function(ms){
+       return {
+         minutes: Math.floor(ms/60000),
+         seconds: Math.floor(ms/1000)%60,
+         millis: ms%1000
+       };
+     };
+
+     var pad = function (n){
+       return n > 9 ? n+'':'0'+n;
+     };
+
+     var TBTimer = function(config){
+       this.resolution = config.resolution || 10;
+       config.specs = config.specs || {};
+       this.specs = {
+         rounds: config.specs.rounds || 8,
+         rest: config.specs.rest || 10,
+         work: config.specs.work || 20
+       };
+
+       var current = {};
+
+       this.displayEl = $('.timer-display')[0];
+
+       this.getValues = function(){
+         var rounds = $('.input-rounds').val();
+         var rest = $('.input-rest').val();
+         var work = $('.input-work').val();
+
+         $('.input-rounds').removeClass('state-error-mark');
+         $('.input-rest').removeClass('state-error-mark');
+         $('.input-work').removeClass('state-error-mark');
+
+         var correct = true;
+         try{
+           rounds = parseInt(rounds);
+         }catch(e){
+           $('.input-rounds').addClass('state-error-mark');
+           correct =  false;
+         }
+         if(isNaN(rounds) || rounds <= 0){
+           $('.input-rounds').addClass('state-error-mark');
+           correct =  false;
+         }
+
+         try{
+           rest = parseFloat(rest);
+         }catch(e){
+           $('.input-rest').addClass('state-error-mark');
+           correct =  false;
+         }
+
+         if( isNaN(rest) || rest <= 0){
+           $('.input-rest').addClass('state-error-mark');
+           correct =  false;
+         }
+
+         try{
+           work = parseFloat(work);
+         }catch(e){
+           $('.input-work').addClass('state-error-mark');
+           correct =  false;
+         }
+
+         if( isNaN(work) || work<= 0){
+           $('.input-work').addClass('state-error-mark');
+           correct =  false;
+         }
+
+         if(!correct){
+           this.notify('Incorrect!');
+           return false;
+         }
+
+         this.specs = {
+           rounds: rounds,
+           rest: rest,
+           work: work
+         };
+         return this.specs;
+       };
+
+       this.start = function(){
+         var s = this.getValues();
+         if(s){
+           var rs = [];
+           var schedules = [];
+           for(var i = 0; i < s.rounds; i++){
+             rs.push({
+               total: s.rest * 1000,
+               round: i+1,
+               type: 'rest'
+             });
+             schedules.push(s.rest*1000);
+
+             rs.push({
+               total: s.work * 1000,
+               round: i+1,
+               type: 'work'
+             });
+             schedules.push(s.work*1000);
+
+
+           }
+
+           schedules.push(500);
+           this.rounds = rs;
+           console.log('start');
+           this.running = true;
+           schedule(function(delay, rn){
+             this._doRound(rn);
+           }, schedules, this);
+
+           $('.timer-start').val('Stop');
+           return {s:schedules, r:rs};
+         }
+       };
+       this.stop  = function(){
+         this.running = false;
+         $('.timer-start').val('Start');
+         this.notifyForRound('-', 'rest');
+         if(current.timerId){
+           clearInterval(current.timerId);
+           current.round.end = new Date().getTime();
+         }
+         this.rounds = [];
+         this.updateDisplay(0);
+
+       };
+       this.notify = function(message){
+         $('.global-notification').html(message);
+         $('.overlay-container').fadeIn('slow', function(){
+           $('.overlay-container').delay(1000).fadeOut('slow');
+         });
+       };
+       this.updateDisplay = function(ms){
+         var tm = convertMillis(ms);
+         this.displayEl.innerHTML =
+         pad(tm.minutes) + ':' +
+             pad(tm.seconds) + ':' +
+		 pad(Math.floor(tm.millis/10));
+      };
+
+      this._doRound = function(rn){
+         if(!this.running){
+            return;
+         }
+         // stop current if running ....
+				if(current.timerId){
+             clearInterval(current.timerId);
+             current.round.end = new Date().getTime();
+           }
+				this.updateDisplay(0);
+				var self =this;
+				if(this.rounds[rn]){
+             var __tick = function(){
+               if(!self.running){
+                 return;
+               }
+               var currentTime = new Date().getTime();
+               var elapsedTime = currentTime - self.rounds[rn].start;
+               var dtm = self.rounds[rn].total - elapsedTime;
+               if(dtm > 0){
+                 self.updateDisplay(dtm);
+               }else{
+                 self.updateDisplay(0);
+                 if(current.timerId){
+                   clearInterval(current.timerId);
+                   current.round.end = new Date().getTime();
+                 }
+               }
+             }
+             current.round = this.rounds[rn];
+             current.round.start = new Date().getTime();
+             current.timerId = setInterval(__tick, this.resolution);
+             var roundNumber = Math.floor(rn/2) + 1;
+            this.notifyForRound(roundNumber, current.round.type);
+            if(current.round.type == 'rest'){
+               this.notify('Rest!');
+            }else{
+               this.notify('Work!');
+            }
+         }else{
+            this.notify('Bravo!');
+            this.stop();
+         }
+      };
+
+      this.notifyForRound = function(rn, type){
+         $('#' + rn).css("background-color", "red");
+         $('#' + rn).css("color", "white");
+         $('.round-number').html(rn);
+         $('.round-type').html(type=='rest' ? 'REST':'WORK');
+
+
+      };
+      var self = this;
+      $('.timer-start').click(function(){
+         if(!self.running){
+            self.start();
+         }else{
+            self.stop();
+            self.notify('Stopped!');
+         }
+      });
+
+      $(document).keypress(function(e){
+         switch(e.which){
+            case 32: // space
+					  case 115: // s
+					  case 13: // return
+					  // these are toggle
+					  if(!self.running){
+                   self.start();
+               }else{
+                   self.stop();
+                   self.notify('Stopped!');
+               }
+					  break;
+					  case 112: // p
+					  self.stop();
+					  self.notify('Stopped!');
+					  break;
+					  case 114: // r
+					  self.start();
+					  break;
+					  }
+					  });
+
+
+				};
+
+
+
+				$(document).ready(function(){
+	   tm = new TBTimer({});
+       });
+
+				$(".timer-action").click(function() {
+	   $("button").css("background-color", "#C4C4C4");
+	   $("button").css("color", "black");
+       });
+				})(jQuery);
+
+
+  </script>

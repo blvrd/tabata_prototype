@@ -4,7 +4,7 @@ class WorkoutsController < ApplicationController
   end
 
   def new
-
+    
   end
   
   def create
