@@ -12,11 +12,26 @@
  .container {
    max-width: 970px !important;
  }
-
  .timer-display {
    padding-left: 28%;
    font-size: 90px;
  }
+.overlay-container{
+   width: 100%;
+   height: 100%;
+   position: absolute;
+   top: 0px;
+   left: 0px;
+   text-align: center;
+}
+.overlay-container .timer-info{
+   color: white;
+   background-color: #BDECB6;
+   padding-top: 50px;
+   padding-bottom: 50px;
+   font-size: 7em;
+   text-shadow: 0px 0px 4px #373034;
+}
 </style>
 
 <div class="container">
@@ -53,7 +68,7 @@
 		<%= number_field_tag :total_reps %>
 		<br />
 		<%= submit_tag "Submit workout", class: 'btn btn-small btn-info active' %>
-	      <% end %> 
+	      <% end %>
             </div>
           </div>
           <div class="timer-float-info">
@@ -97,6 +112,12 @@
       <button type="button" class="btn btn-lg disabled" id="8">8</button>
     </div>
   </div>
+   <div class="overlay-container" style="display: none;">      
+    <div class="timer-info global-notification">
+      Work!
+    </div>
+  </div>
+
   <script type="text/javascript">
    (function($){
      var schedule = function(callback, table, scope, error){
@@ -212,18 +233,18 @@
            var schedules = [];
            for(var i = 0; i < s.rounds; i++){
              rs.push({
-               total: s.rest * 1000,
-               round: i+1,
-               type: 'rest'
-             });
-             schedules.push(s.rest*1000);
-
-             rs.push({
                total: s.work * 1000,
                round: i+1,
                type: 'work'
              });
              schedules.push(s.work*1000);
+
+             rs.push({
+               total: s.rest * 1000,
+               round: i+1,
+               type: 'rest'
+             });
+             schedules.push(s.rest*1000);
 
 
            }
