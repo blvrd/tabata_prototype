@@ -11,8 +11,13 @@ class WorkoutsController < ApplicationController
     @workout = Workout.new
     @workout.exercise = params[:exercise]
     @workout.total_reps = params[:total_reps]
-    @workout.save
-    redirect_to workouts_url
+
+    if @workout.save
+      redirect_to workouts_url
+    else
+      flash[:error] = @workout.errors[:total_reps]
+      render :new
+    end
   end
   
   def show
