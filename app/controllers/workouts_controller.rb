@@ -15,7 +15,7 @@ class WorkoutsController < ApplicationController
     if @workout.save
       redirect_to workouts_url
     else
-      flash[:error] = @workout.errors[:total_reps]
+      flash.now[:error] = @workout.errors.full_messages
       render :new
     end
   end
