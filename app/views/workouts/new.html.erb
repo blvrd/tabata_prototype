@@ -58,11 +58,11 @@
             <div class="timer-info">
               <div class="info-text-title hidden">Round</div>
               <div class="info-text round-number hidden">-</div>
-	      <% exercise_array = %w( pushups squats burpees jumprope dips pullups ) %>
-	      <% exercise = exercise_array.sample.capitalize %>
+
+
 
 	      <%= form_tag workouts_path do %>
-		<%= hidden_field_tag :exercise, exercise %>
+		<%= select_tag :exercise, options_for_select(%w( pushups squats burpees jumprope dips pullups )) %>
 		<%= label_tag :total_reps, "Total reps:" %>
 		<br />
 		<%= number_field_tag :total_reps %>
@@ -74,8 +74,8 @@
           <div class="timer-float-info">
             <div class="timer-info timer-display-like">
               <div class="info-text-smaller round-type">Work</div>
-              <%= exercise %>
             </div>
+	    
           </div>
 	</div>
       </div>
