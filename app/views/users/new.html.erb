@@ -1,27 +1,27 @@
 <h1>Create your account</h1>
 
-<%= form_for @user do |f| %>
+<%= form_tag users_path do %>
   <div class="">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+    <%= label_tag :name %>
+    <%= text_field_tag :name %>
   </div>
 
   <div class="">
-    <%= f.label :email, "Email Address" %>
-    <%= f.text_field :email %>
+    <%= label_tag :email, "Email Address" %>
+    <%= text_field_tag :email %>
   </div>
 
   <div class="">
-    <%= f.label :password %>
-    <%= f.password_field :password %>
+    <%= label_tag :password %>
+    <%= password_field_tag :password %>
   </div>
 
   <div class="">
-    <%= f.label :password_confirmation, "Confirm your password" %>
-    <%= f.password_field :password_confirmation %>
+    <%= label_tag :password_confirmation, "Confirm your password" %>
+    <%= password_field_tag :password_confirmation %>
   </div>
 
   <div class="">
-    <%= f.submit "Create User" %>
+    <%= submit_tag "Create User" %>
   </div>
 <% end %>

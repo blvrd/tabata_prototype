@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     @user.password_confirmation = params[:password_confirmation]
     
     if @user.save
-      session[:id] = @user.id
+      session[:user_id] = @user.id
       redirect_to workouts_url
     else
       # TODO add flash error
