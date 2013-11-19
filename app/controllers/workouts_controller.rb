@@ -1,5 +1,6 @@
 class WorkoutsController < ApplicationController
   def index
+    @user = User.find_by_id(session[:user_id])
     @workouts = Workout.all.order('created_at DESC')
   end
 
@@ -11,6 +12,7 @@ class WorkoutsController < ApplicationController
     @workout = Workout.new
     @workout.exercise = params[:exercise]
     @workout.total_reps = params[:total_reps]
+    @workout.user_id = session[:user_id]
 
     if @workout.save
       redirect_to workouts_url
