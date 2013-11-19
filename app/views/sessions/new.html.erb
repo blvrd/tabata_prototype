@@ -1,17 +1,13 @@
 <h1>Sign in</h1>
 
-<%= form_for @user do |f| %>
-  <div class="">
-    <%= f.label :email, "Email Address" %>
-    <%= f.text_field :email %>
-  </div>
+<%= form_tag sessions_url do %>
 
-  <div class="">
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-  </div>
+  <%= label_tag :email, "Email address" %>
+  <%= text_field_tag :email, params[:email], size: 60 %>
+  <br>
+  <%= label_tag :password %>
+  <%= password_field_tag :password %>
+  <br>
+  <%= submit_tag "Sign in" %>
 
-  <div class="">
-    <%= f.submit "Sign in" %>
-  </div>
 <% end %>
