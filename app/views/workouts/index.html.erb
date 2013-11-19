@@ -3,8 +3,8 @@
 <div class="row">
   <% @workouts.each do |workout| %>
   <div class="jumbotron">
-    <div>_____<%= workout.exercise %>: <%= workout.total_reps %></div>_____
-    <div>_____Date: <%= workout.created_at.strftime("%d %b. %Y") %></div>_____
+    <div><%= workout.exercise %>: <%= workout.total_reps %></div>
+    <div>Date: <%= workout.created_at.strftime("%d %b. %Y") %></div>
   </div>
   <% end %>
 </div>
