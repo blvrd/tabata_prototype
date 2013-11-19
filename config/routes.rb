@@ -1,4 +1,5 @@
 TabataApp::Application.routes.draw do
-  root 'workouts#index'
+  root 'sessions#new'
   resources :workouts
+  resources :users
 end
