@@ -19,5 +19,9 @@ class UsersController < ApplicationController
     end
   end
   
+  def progress
+    @user = User.find_by_id(session[:user_id])
+  end
+  
   
 end
