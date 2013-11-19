@@ -3,7 +3,7 @@ TabataApp::Application.routes.draw do
   get "/logout" => 'sessions#destroy'
   post "/sessions" => 'sessions#create'
 
-  root "workouts#index"
+  root "pages#welcome"
 
   resources :workouts
   resources :users
