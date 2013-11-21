@@ -56,7 +56,60 @@ class User < ActiveRecord::Base
     end
     return pullup_count
   end
+  
+  def minutes_worked
+    return self.workouts.count * 4
+  end
 
+  def pushups_per_minute
+    pushup_workouts = self.workouts.where(exercise: "pushups")
+    return self.pushups / (pushup_workouts.count * 4)
+  end
+  
+  def squats_per_minute
+    squat_workouts = self.workouts.where(exercise: "squats")
+    if self.squats != 0
+      return self.squats / (squat_workouts.count * 4)
+    else
+      return 0
+    end
+  end
 
+  def burpees_per_minute
+    burpee_workouts = self.workouts.where(exercise: "burpees")
+    if self.burpees != 0
+      return self.burpees / (burpee_workouts.count * 4)
+    else
+      return 0
+    end
+  end
+
+  def jumprope_revolutions_per_minute
+    jumprope_workouts = self.workouts.where(exercise: "jumprope")
+    if self.jumprope_revolutions != 0
+      return self.jumprope_revolutions / (jumprope_workouts.count * 4)
+    else
+      return 0
+    end
+  end
+
+  def dips_per_minute
+    dip_workouts = self.workouts.where(exercise: "dips")
+    if self.dips != 0
+      return self.dips / (dip_workouts.count * 4)
+    else
+      return 0
+    end
+  end
+
+  def pullups_per_minute
+    pullup_workouts = self.workouts.where(exercise: "pullups")
+    if self.pullups != 0
+      return self.pullups / (pullup_workouts.count * 4)
+    else
+      return 0
+    end
+  end
+  
 end
 
