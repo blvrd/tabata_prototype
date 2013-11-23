@@ -7,7 +7,7 @@
       <% @user.workouts.each do |workout| %>
 	<div class="jumbotron">
 	  <div><%= workout.exercise %>: <%= workout.total_reps %></div>
-	  <div>Date: <%= workout.created_at.strftime("%d %b. %Y") %></div>
+	  <div>Date: <%= workout.created_at.strftime("%d %b. %Y at %I:%M %P") %></div>
 	</div>
       <% end %>
     <% else %>
