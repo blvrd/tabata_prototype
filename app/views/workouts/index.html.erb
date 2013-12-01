@@ -4,7 +4,7 @@
    <li><%= link_to "Progress", user_path(session[:user_id]), remote: true %></li>
    <li><%= link_to "Log out", "/logout", class: 'btn' %></li>
   </div>
-  <div class="container" style="padding-top: 25px">
+  <div class="container" id="workout_list" style="padding-top: 25px">
     <% if @user.workouts %>
       <% @user.workouts.each do |workout| %>
 	<div class="row">
