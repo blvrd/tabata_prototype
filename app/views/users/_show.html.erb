@@ -1,10 +1,13 @@
 <h1>Progress</h1>
 
+<div class="jumbotron">
+  <p>Total minutes worked: <span class="label label-default"><%= @user.minutes_worked %></span></p>
+  <p>Pushup total: <span class="label label-primary"><%= @user.pushups %></span>, per minute:  <span class="label label-danger"><%= @user.pushups_per_minute %></span></p>
+  <p>Squats total: <span class="label label-primary"><%= @user.squats %></span>, per minute:  <span class="label label-danger"><%= @user.squats_per_minute %></span></p>
+  <p>Burpees total: <span class="label label-primary"><%= @user.burpees %></span>, per minute:  <span class="label label-danger"><%= @user.burpees_per_minute %></span></p>
+  <p>Jumprope total: <span class="label label-primary"><%= @user.jumprope_revolutions %></span>, per minute:  <span class="label label-danger"><%= @user.jumprope_revolutions_per_minute %></span></p>
+  <p>Dips total: <span class="label label-primary"><%= @user.dips %></span>, per minute:  <span class="label label-danger"><%= @user.dips_per_minute %></span></p>
+  <p>Pullups total: <span class="label label-primary"><%= @user.pullups %></span>, per minute:  <span class="label label-danger"><%= @user.pullups_per_minute %></span></p>
+</div>
 
-<p>Total minutes worked: <%= @user.minutes_worked %></p>
-<p>Pushups: <%= @user.pushups %>, per minute:  <%= @user.pushups_per_minute %></p>
-<p>Squats: <%= @user.squats %>, per minute:  <%= @user.squats_per_minute %></p>
-<p>Burpees: <%= @user.burpees %>, per minute:  <%= @user.burpees_per_minute %></p>
-<p>Jumprope revolutions:<%= @user.jumprope_revolutions %>, per minute:  <%= @user.jumprope_revolutions_per_minute %></p>
-<p>Dips: <%= @user.dips %>, per minute:  <%= @user.dips_per_minute %></p>
-<p>Pullups: <%= @user.pullups %>, per minute:  <%= @user.pullups_per_minute %></p>
+<%= link_to "Go back", workouts_path %>
