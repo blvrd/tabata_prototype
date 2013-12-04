@@ -119,6 +119,10 @@
   </div>
 
   <script type="text/javascript">
+   function PlaySound(soundObj) {
+     var sound = document.getElementById(soundObj);
+     sound.Play();
+   } 
    (function($){
      var schedule = function(callback, table, scope, error){
        var i = 0;
@@ -128,7 +132,7 @@
              callback.call(scope || window, table[i], i);
              setTimeout(tick, table[i]);
              i++;
-
+	    
            }catch(e){
              error = error || function(){};
              if(error){
